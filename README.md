@@ -1,3 +1,3 @@
 # tenmovies
 
-- Index ![index]("https://www.markdownlang.com/static/images/logo.png")
+- Index ![Markdown Logo](https://www.markdownlang.com/static/images/logo.png)
