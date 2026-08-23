@@ -1,0 +1,470 @@
+/* ==========================================================================
+   TEN MOVIES — site.css
+   Bootstrap is already loaded by _Layout.cshtml, so this file only adds
+   the palette, type, and component styling on top of it — it does not
+   re-implement the grid.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+    /* -- palette: paper white + curtain burgundy + old-gold ticket ink -- */
+    --bg: #ffffff;
+    --bg-alt: #f5f1ea; /* zebra stripe / soft panels */
+    --surface: #ffffff;
+    --ink: #20222b; /* primary text — high contrast on white */
+    --ink-soft: #565a6e; /* secondary text */
+    --muted: #83869c; /* tertiary text */
+
+    --accent: #7c1f2e; /* curtain burgundy — headings, links, primary actions */
+    --accent-dark: #5e1521;
+    --accent-soft: #f5e2e5; /* pale burgundy tint for hover rows */
+
+    --gold-ink: #6b4e05; /* dark gold — used only as text, AA-safe on white */
+
+    --danger: #b23a3a;
+    --danger-dark: #8f2c2c;
+    --danger-soft: #f8e3e3;
+    --line: #e2ddd3; /* hairline borders */
+
+    --radius: 8px;
+    --radius-sm: 4px;
+    --shadow-card: 0 16px 40px -28px rgba(32, 20, 10, 0.35);
+    --font-display: 'Bebas Neue', 'Oswald', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+body {
+    background: var(--bg);
+    color: var(--ink-soft);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+::selection {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    margin: 0 0 0.5em;
+}
+
+/* signature touch: a strip of film-reel sprocket holes above the page
+   title, standing in for the usual <hr> on every view */
+h1 {
+    font-size: 2.4rem;
+    letter-spacing: 0.05em;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.1rem;
+    border-bottom: 1px solid var(--line);
+}
+
+    h1::before {
+        content: "";
+        display: block;
+        height: 10px;
+        width: 100%;
+        max-width: 220px;
+        margin-bottom: 14px;
+        border-radius: 3px;
+        background-color: var(--line);
+        background-image: radial-gradient(circle, var(--bg) 2.4px, transparent 2.8px);
+        background-size: 18px 10px;
+        background-position: left center;
+    }
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    font-family: var(--font-body);
+}
+
+hr {
+    border: none;
+    height: 5px;
+    margin: 0 0 1.5rem;
+    border-radius: 3px;
+    background-color: var(--line);
+    background-image: radial-gradient(circle, var(--bg) 1.4px, transparent 1.8px);
+    background-size: 11px 5px;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+    a:hover {
+        color: var(--accent-dark);
+        text-decoration: underline;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: var(--radius-sm);
+    }
+
+/* ==========================================================================
+   "Create New" call-to-action
+   NEW CLASS — add class="btn-cta" to the Create New link in Index.cshtml:
+     <a asp-action="Create" class="btn-cta">Create New</a>
+   ========================================================================== */
+
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.5em 1.15em;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 999px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+}
+
+    .btn-cta::before {
+        content: "+";
+        font-weight: 700;
+    }
+
+    .btn-cta:hover {
+        background: var(--accent-dark);
+        color: #fff;
+        text-decoration: none;
+    }
+
+/* ==========================================================================
+   Index — the movies table
+   ========================================================================== */
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
+
+    .table thead th {
+        text-align: left;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--accent);
+        padding: 0.8rem 1rem;
+    }
+
+    .table tbody td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--line);
+        vertical-align: middle;
+        color: var(--ink-soft);
+    }
+
+    .table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .table tbody tr {
+        border-left: 3px solid transparent;
+    }
+
+        .table tbody tr:nth-child(even) {
+            background: var(--bg-alt);
+        }
+
+        .table tbody tr:hover {
+            background: var(--accent-soft);
+            border-left-color: var(--accent);
+        }
+
+    .table td.name {
+        color: var(--ink);
+        font-weight: 600;
+    }
+
+    .table td.director {
+        color: var(--ink-soft);
+    }
+
+    .table td.age {
+        font-family: var(--font-mono);
+        color: var(--muted);
+        white-space: nowrap;
+    }
+
+    .table td.genre {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: var(--gold-ink);
+        font-weight: 600;
+    }
+
+    .table td.poster {
+        width: 64px;
+    }
+
+        .table td.poster img {
+            display: block;
+            width: 48px;
+            height: 68px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--line);
+            box-shadow: 0 6px 14px -9px rgba(32, 20, 10, 0.5);
+        }
+
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 34ch;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+}
+
+.table td:last-child {
+    white-space: nowrap;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   Create & Edit forms
+   NEW CLASS — replace the wrapping column so the forms are wider:
+     Create.cshtml and Edit.cshtml:
+       <div class="col-md-4">   ->   <div class="form-card">
+   (leave the surrounding <div class="row"> as-is)
+   ========================================================================== */
+
+.form-card {
+    width: 100%;
+    max-width: 640px;
+}
+
+form {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.75rem 2rem;
+    box-shadow: var(--shadow-card);
+}
+
+.form-group {
+    margin-bottom: 1.1rem;
+}
+
+.control-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+}
+
+    .form-control::placeholder {
+        color: var(--muted);
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+.text-danger {
+    display: block;
+    color: var(--danger);
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+[data-valmsg-summary="true"],
+.validation-summary-errors {
+    background: var(--danger-soft);
+    border: 1px solid var(--danger);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+    .validation-summary-errors ul {
+        margin: 0;
+        padding-left: 1.1rem;
+    }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6em 1.4em;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+}
+
+    .btn-primary:hover {
+        background: var(--accent-dark);
+    }
+
+.btn-danger {
+    background: var(--danger);
+    color: #fff;
+}
+
+    .btn-danger:hover {
+        background: var(--danger-dark);
+    }
+
+/* ==========================================================================
+   Details & Delete — definition-list "ticket stub"
+   ========================================================================== */
+
+dl.row {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.5rem 1.5rem;
+    box-shadow: var(--shadow-card);
+    margin: 0 0 1rem;
+}
+
+    dl.row dt {
+        padding: 0.85rem 0 0.15rem;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gold-ink);
+        border-top: 1px dashed var(--line);
+    }
+
+        dl.row dt:first-of-type {
+            border-top: none;
+        }
+
+    dl.row dd {
+        padding: 0 0 0.85rem;
+        margin: 0;
+        color: var(--ink);
+        font-size: 1rem;
+    }
+
+    dd img {
+        width: 300px;
+        border-radius: 20px;
+    }
+
+/* Delete view — clear "danger zone" framing for the confirmation heading */
+h3 {
+    color: var(--danger-dark);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0;
+    padding: 0.85rem 1rem;
+    background: var(--danger-soft);
+    border: 1px solid var(--danger);
+    border-left: 3px solid var(--danger);
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.25rem;
+}
+
+form:has(input[type="submit"][value="Delete"]) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 700px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .description {
+        max-width: 22ch;
+    }
+
+    form {
+        padding: 1.25rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}

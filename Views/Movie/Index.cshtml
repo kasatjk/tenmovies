@@ -1,0 +1,40 @@
+@model IEnumerable<tenmovies.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn-cta">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Name</th>
+            <th>Director</th>
+            <th>Age</th>
+            <th>Genre</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var s in Model) {
+        <tr>
+            <td class="poster"><img src="@s.Poster" /></td>
+            <td class="name">@s.Title</td>
+            <td class="director">@s.Director</td>
+            <td class="age">@s.Year</td>
+            <td class="genre">@s.Genre</td>
+            <td><span class="description">@s.Description</span></td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@s.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@s.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@s.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
