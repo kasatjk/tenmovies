@@ -38,7 +38,7 @@
             @Html.DisplayNameFor(model => model.Poster)
         </dt>
         <dd class = "col-sm-10">
-            <img src="~/@Model.Poster" />
+            <img src="~/@Model.Poster.Path" alt="@Model.Poster.Name" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)

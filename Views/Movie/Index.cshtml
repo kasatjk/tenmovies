@@ -15,7 +15,7 @@
             <th>Poster</th>
             <th>Name</th>
             <th>Director</th>
-            <th>Age</th>
+            <th>Year</th>
             <th>Genre</th>
             <th>Description</th>
         </tr>
@@ -23,10 +23,10 @@
     <tbody>
 @foreach (var s in Model) {
         <tr>
-            <td class="poster"><img src="@s.Poster" /></td>
+            <td class="poster"><img src="@s.Poster.Path" alt="@s.Poster.Name" /></td>
             <td class="name">@s.Title</td>
             <td class="director">@s.Director</td>
-            <td class="age">@s.Year</td>
+            <td class="year">@s.Year</td>
             <td class="genre">@s.Genre</td>
             <td><span class="description">@s.Description</span></td>
             <td>

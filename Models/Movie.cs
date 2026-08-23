@@ -12,7 +12,7 @@
 
         public int Year { get; set; }
 
-        public string? Poster { get; set; }
+        public FileModel? Poster { get; set; }
 
         public string? Description { get; set; }
     }

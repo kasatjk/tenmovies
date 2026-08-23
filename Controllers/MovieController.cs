@@ -6,16 +6,18 @@ using tenmovies.Models;
 public class MovieController : Controller
 {
     private readonly MovieContext _context;
+    private readonly IWebHostEnvironment _appEnvironment;
 
-    public MovieController(MovieContext context)
+    public MovieController(MovieContext context, IWebHostEnvironment appEnvironment)
     {
         _context = context;
+        _appEnvironment = appEnvironment;
     }
 
     // GET: MOVIES
     public async Task<IActionResult> Index()    
     {
-        return View(await _context.Movies.ToListAsync());
+        return View(await _context.Movies.Include(m => m.Poster).ToListAsync());
     }
 
     // GET: MOVIES/Details/5
@@ -27,6 +29,7 @@ public class MovieController : Controller
         }
 
         var movie = await _context.Movies
+            .Include(m => m.Poster)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (movie == null)
         {
@@ -47,14 +50,64 @@ public class MovieController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Title,Director,Genre,Year,Poster,Description")] Movie movie)
+    public async Task<IActionResult> Create(Movie movie, IFormFile? poster)
     {
-        if (ModelState.IsValid)
+        try
         {
-            _context.Add(movie);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                if (poster != null && poster.Length > 0)
+                {
+                    try
+                    {
+                        if (string.IsNullOrEmpty(_appEnvironment.WebRootPath))
+                        {
+                            ModelState.AddModelError("Poster", "WebRootPath is not configured");
+                            return View(movie);
+                        }
+
+                        var uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "img");
+                        if (!Directory.Exists(uploadsFolder))
+                        {
+                            Directory.CreateDirectory(uploadsFolder);
+                        }
+
+                        var uniqueName = Guid.NewGuid() + "_" + Path.GetFileName(poster.FileName);
+                        var filePath = Path.Combine(uploadsFolder, uniqueName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await poster.CopyToAsync(stream);
+                        }
+
+                        var fileModel = new FileModel
+                        {
+                            Name = poster.FileName,
+                            Path = "./img/" + uniqueName,
+                            UploadDate = DateTime.Now
+                        };
+
+                        _context.Files.Add(fileModel);
+                        movie.Poster = fileModel;
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("Poster", $"Error uploading file: {ex.Message}");
+                        return View(movie);
+                    }
+                }
+
+                _context.Movies.Add(movie);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
         }
+        catch (Exception ex)
+        {
+            ModelState.AddModelError("", $"An error occurred: {ex.Message}");
+        }
+
         return View(movie);
     }
 
@@ -66,7 +119,9 @@ public class MovieController : Controller
             return NotFound();
         }
 
-        var movie = await _context.Movies.FindAsync(id);
+        var movie = await _context.Movies
+            .Include(m => m.Poster)
+            .FirstOrDefaultAsync(m => m.Id == id);
         if (movie == null)
         {
             return NotFound();
@@ -79,33 +134,91 @@ public class MovieController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? id, [Bind("Id,Title,Director,Genre,Year,Poster,Description")] Movie movie)
+    public async Task<IActionResult> Edit(int id, Movie movie, IFormFile? poster)
     {
         if (id != movie.Id)
         {
             return NotFound();
         }
 
+        var movieInDb = await _context.Movies
+            .Include(m => m.Poster)
+            .FirstOrDefaultAsync(m => m.Id == id);
+
+        if (movieInDb == null)
+        {
+            return NotFound();
+        }
+
         if (ModelState.IsValid)
         {
+            movieInDb.Title = movie.Title;
+            movieInDb.Director = movie.Director;
+            movieInDb.Genre = movie.Genre;
+            movieInDb.Description = movie.Description;
+            movieInDb.Year = movie.Year;
+
+            if (poster != null && poster.Length > 0)
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(_appEnvironment.WebRootPath))
+                    {
+                        ModelState.AddModelError("Poster", "WebRootPath is not configured");
+                        return View(movieInDb);
+                    }
+
+                    var uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "img");
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var uniqueName = Guid.NewGuid() + "_" + Path.GetFileName(poster.FileName);
+                    var filePath = Path.Combine(uploadsFolder, uniqueName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await poster.CopyToAsync(stream);
+                    }
+
+                    var newPoster = new FileModel
+                    {
+                        Name = poster.FileName,
+                        Path = "./img/" + uniqueName,
+                        UploadDate = DateTime.Now
+                    };
+
+                    _context.Files.Add(newPoster);
+                    movieInDb.Poster = newPoster;
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Poster", $"Error uploading file: {ex.Message}");
+                    return View(movieInDb);
+                }
+            }
+
             try
             {
-                _context.Update(movie);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!MovieExists(movie.Id))
-                {
                     return NotFound();
-                }
                 else
-                {
                     throw;
-                }
             }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"An error occurred while saving: {ex.Message}");
+                return View(movieInDb);
+            }
+
             return RedirectToAction(nameof(Index));
         }
+
         return View(movie);
     }
 
@@ -118,6 +231,7 @@ public class MovieController : Controller
         }
 
         var movie = await _context.Movies
+            .Include(m => m.Poster)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (movie == null)
         {
