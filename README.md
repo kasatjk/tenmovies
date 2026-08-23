@@ -1,3 +1,3 @@
 # tenmovies
 
-- Index ![index]("~/Screenshot 2026-08-23 235528.png")
+- Index ![index]("https://www.markdownlang.com/static/images/logo.png")
