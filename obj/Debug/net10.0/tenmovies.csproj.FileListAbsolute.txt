@@ -25,7 +25,6 @@ C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\scopedcss\Views\Shared\_L
 C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\scopedcss\bundle\tenmovies.styles.css
 C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\scopedcss\projectbundle\tenmovies.bundle.scp.css
 C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\compressed\4rq9zdi1d6-{0}-61n19gt1b8-61n19gt1b8.gz
-C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\compressed\oip7t6ivkx-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\compressed\uoo3422vp1-{0}-bqjiyaj88i-bqjiyaj88i.gz
 C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\compressed\d23na9h9nf-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\compressed\rigtloz2mi-{0}-erw9l3u2r3-erw9l3u2r3.gz
@@ -229,5 +228,6 @@ C:\Users\user\source\repos\tenmovies\bin\Debug\net10.0\runtimes\osx-x64\native\m
 C:\Users\user\source\repos\tenmovies\bin\Debug\net10.0\runtimes\win-arm64\native\msalruntime_arm64.dll
 C:\Users\user\source\repos\tenmovies\bin\Debug\net10.0\runtimes\win-x64\native\msalruntime.dll
 C:\Users\user\source\repos\tenmovies\bin\Debug\net10.0\runtimes\win-x86\native\msalruntime_x86.dll
-C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\compressed\qv0vqpnete-{0}-5kb3z5uaiq-5kb3z5uaiq.gz
 C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\tenmovies.sourcelink.json
+C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\compressed\qv0vqpnete-{0}-o8e86rj7fe-o8e86rj7fe.gz
+C:\Users\user\source\repos\tenmovies\obj\Debug\net10.0\compressed\oip7t6ivkx-{0}-cy59aqnrdz-cy59aqnrdz.gz

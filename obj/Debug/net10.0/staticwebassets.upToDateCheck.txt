@@ -1,5 +1,5 @@
-wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\img\f3472b12-dcd4-4f00-a1aa-423c5e77dba1_speedrun.gif
 wwwroot\img\interstellar.jpg
 wwwroot\img\oleksandr.png
 wwwroot\img\oppenheimer.jpg
@@ -10,7 +10,6 @@ wwwroot\img\starwars.jpg
 wwwroot\img\thehobbit.webp
 wwwroot\img\themandalorian.jpg
 wwwroot\img\venom.jpg
-wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -71,9 +70,9 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
-C:\Users\user\source\repos\tenmovies\wwwroot\css\site.css
+wwwroot\css\site.css
+wwwroot\js\site.js
 C:\Users\user\source\repos\tenmovies\wwwroot\favicon.ico
-C:\Users\user\source\repos\tenmovies\wwwroot\js\site.js
 C:\Users\user\source\repos\tenmovies\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\user\source\repos\tenmovies\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 C:\Users\user\source\repos\tenmovies\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -133,3 +132,5 @@ C:\Users\user\source\repos\tenmovies\wwwroot\lib\jquery\dist\jquery.slim.js
 C:\Users\user\source\repos\tenmovies\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\user\source\repos\tenmovies\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\user\source\repos\tenmovies\wwwroot\lib\jquery\LICENSE.txt
+C:\Users\user\source\repos\tenmovies\wwwroot\css\site.css
+C:\Users\user\source\repos\tenmovies\wwwroot\js\site.js
