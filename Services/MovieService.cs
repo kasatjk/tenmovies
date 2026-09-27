@@ -1,40 +1,35 @@
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using tenmovies.Models;
+using tenmovies.Repositories.Interfaces;
 using tenmovies.Services.Interfaces;
 
 namespace tenmovies.Services
 {
     public class MovieService : IMovieService
     {
-        private readonly MovieContext _context;
+        private readonly IRepository _repository;
         private readonly IWebHostEnvironment _appEnvironment;
 
-        public MovieService(MovieContext context, IWebHostEnvironment appEnvironment)
+        public MovieService(IRepository repository, IWebHostEnvironment appEnvironment)
         {
-            _context = context;
+            _repository = repository;
             _appEnvironment = appEnvironment;
         }
 
         public async Task<IReadOnlyList<Movie>> GetAllAsync()
         {
-            return await _context.Movies
-                .Include(movie => movie.Poster)
-                .ToListAsync();
+            return await _repository.GetAllMoviesAsync();
         }
 
         public async Task<Movie?> GetByIdAsync(int id)
         {
-            return await _context.Movies
-                .Include(movie => movie.Poster)
-                .FirstOrDefaultAsync(movie => movie.Id == id);
+            return await _repository.GetMovieByIdAsync(id);
         }
 
         public async Task CreateAsync(Movie movie, IFormFile? poster)
         {
             movie.Poster = await SavePosterAsync(poster);
-            _context.Movies.Add(movie);
-            await _context.SaveChangesAsync();
+            await _repository.AddMovieAsync(movie);
         }
 
         public async Task<bool> UpdateAsync(int id, Movie movie, IFormFile? poster)
@@ -57,21 +52,13 @@ namespace tenmovies.Services
                 movieInDb.Poster = newPoster;
             }
 
-            await _context.SaveChangesAsync();
+            await _repository.UpdateMovieAsync(movieInDb);
             return true;
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var movie = await _context.Movies.FindAsync(id);
-            if (movie == null)
-            {
-                return false;
-            }
-
-            _context.Movies.Remove(movie);
-            await _context.SaveChangesAsync();
-            return true;
+            return await _repository.DeleteMovieAsync(id);
         }
 
         private async Task<FileModel?> SavePosterAsync(IFormFile? poster)
@@ -102,7 +89,6 @@ namespace tenmovies.Services
                 UploadDate = DateTime.Now
             };
 
-            _context.Files.Add(fileModel);
             return fileModel;
         }
     }

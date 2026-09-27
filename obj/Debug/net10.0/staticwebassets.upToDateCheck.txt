@@ -1,17 +1,6 @@
-wwwroot\css\site.css
-wwwroot\favicon.ico
-wwwroot\img\f3472b12-dcd4-4f00-a1aa-423c5e77dba1_speedrun.gif
-wwwroot\img\interstellar.jpg
-wwwroot\img\oleksandr.png
-wwwroot\img\oppenheimer.jpg
-wwwroot\img\pirates.jpg
-wwwroot\img\smeshariki.png
-wwwroot\img\speedrun.gif
-wwwroot\img\starwars.jpg
-wwwroot\img\thehobbit.webp
-wwwroot\img\themandalorian.jpg
-wwwroot\img\venom.jpg
 wwwroot\js\site.js
+wwwroot\favicon.ico
+wwwroot\css\site.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -72,6 +61,20 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\img\oleksandr.png
+wwwroot\img\smeshariki.png
+wwwroot\img\thehobbit.webp
+wwwroot\img\interstellar.jpg
+wwwroot\img\oppenheimer.jpg
+wwwroot\img\themandalorian.jpg
+wwwroot\img\venom.jpg
+wwwroot\img\starwars.jpg
+wwwroot\img\pirates.jpg
+wwwroot\img\speedrun.gif
+wwwroot\img\f3472b12-dcd4-4f00-a1aa-423c5e77dba1_speedrun.gif
+wwwroot\img\6484aa8d-5ec5-4c6d-be01-a3780416635c_Screenshot 2026-09-14 130956.png
+wwwroot\img\f2770c7c-97da-4890-ae47-2d5fb73c1923_Screenshot 2026-09-14 130956.png
+wwwroot\img\01e1cd70-b505-4684-82a0-3d6f6f6a74a3_Screenshot 2026-09-14 131041.png
 C:\Users\user\source\repos\tenmovies\wwwroot\css\site.css
 C:\Users\user\source\repos\tenmovies\wwwroot\favicon.ico
 C:\Users\user\source\repos\tenmovies\wwwroot\js\site.js
