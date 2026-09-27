@@ -23,7 +23,6 @@ namespace tenmovies.Models
         [MyYear(ErrorMessage = "Year must be between 1888 and the current year.")]
         public int Year { get; set; }
 
-        [Required(ErrorMessage = "Poster is required.")]
         public FileModel? Poster { get; set; }
 
         [StringLength(500, ErrorMessage = "Description cannot exceed 500 characters.")]

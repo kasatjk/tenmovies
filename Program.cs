@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using tenmovies.Models;
+using tenmovies.Services.Extensions;
 namespace tenmovies
 {
     public class Program
@@ -14,6 +15,7 @@ namespace tenmovies
 
             // додаємо контекст бази даних (дивимось Student.cs та StudentContext.cs)
             builder.Services.AddDbContext<MovieContext>(options => options.UseSqlServer(connection));
+            builder.Services.AddApplicationServices();
             // на основі рядка вище, інфраструктура ASP.NET Core створить об'єкт StudentContext, і передасть його в контролер StudentController через механізм впровадження залежностей (Dependency Injection)
             // до речі, в старому ASP.NET (не Core) такого не було, там треба було самому створювати об'єкти контексту даних, а тут все робиться автоматично (в Spring Boot для Java теж так само)
             // !!! два рядки коду вище будуть потрібні завжди, коли треба підключитися до бази даних через Entity Framework !!!

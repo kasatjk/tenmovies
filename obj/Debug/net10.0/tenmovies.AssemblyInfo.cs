@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tenmovies")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48ecfde56535245d5f787dd9a8cb80f6e57fb097")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52c8b5c1ac5b1e749355eea2e6182ce1417f816b")]
 [assembly: System.Reflection.AssemblyProductAttribute("tenmovies")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tenmovies")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
